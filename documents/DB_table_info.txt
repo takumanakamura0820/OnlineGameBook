@@ -1,0 +1,31 @@
+テーブル設計メモ
+
+Story
+	id			int
+	user_id	int
+	title		char
+	theme1	char
+	theme2	char
+	picture	binary
+	created_at	datetime
+	updated_at	datetime
+	discription	char
+
+page
+	story_id	int
+	page_id	int
+	picture	binary
+	content	text
+	※page_idはストーリーごとで、複合主キーのテーブルとする
+
+selection
+	story_id	int
+	page_id	int
+	id	id
+	content	char
+	ahead		int		page_idを格納
+
+like
+	story_id
+	user_id
+	※複合主キー
