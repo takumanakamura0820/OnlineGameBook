@@ -1,0 +1,46 @@
+{#レイアウトを継承します#}
+{% extends "layout/layout.twig" %}
+
+{#HTMLのタイトルを定義します。#}
+{% block title %}{{ result.name }}の詳細情報{% endblock %}
+
+{# このページに適用させたいスタイルシートを指定します #}
+{% block header_scripts_add %}
+{% endblock %}
+
+{#ここから表示したい情報を記載します。#}
+{% block page_content %}
+
+    <div class="page-header text-center">
+        <h4>{{ result.name }}</h4>
+    </div>
+    <div class="row">
+        <div class="col">
+            <img src="/assets/img/oda.png" class="img-fluid">
+        </div>
+    </div>
+    <hr>
+    {# ここ以下に文章と、選択肢 #}
+    <div class="row">
+        <div class="col">
+            {# 文章 #}
+            <p>
+              鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、
+            </p> {# result.spec #}
+            <hr>
+            {# 選択肢 #}
+            <div class="row">
+                <div class="col align-bottom">
+                  <div class="row">
+                      <div class="col-4"><a href="#" class="btn btn-outline-primary" role="button">　殺してしまえ　　</a></div>
+                      <div class="col-4"><a href="#" class="btn btn-outline-primary" role="button">　鳴かせてみよう　　</a></div>
+                      <div class="col-4"><a href="#" class="btn btn-outline-primary" role="button">　鳴くまで待とう　　</a></div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{#共通フッタとして追記したい情報を記載します。#}
+{% block footer_scripts_add %}{% endblock %}
