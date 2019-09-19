@@ -28,7 +28,8 @@ $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Respon
     ];
 
     // Render index view
-    return $this->view->render($response, 'story/edit.twig', $data);
+    return $response->withRedirect('/story/{$args["story_id"]}/{$args["page_id"]}/edit');
+    // return $this->view->render($response, 'story/edit.twig', $data);
 
 });
 
@@ -63,17 +64,15 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
         "page_id" => $args["page_id"],
     ]) === false ) {  # 新規作成
         $page->insert($param);
-    } else {  # 編集
-        $page->update($param);
     };
 
-    $ids = $selection->select([
+    $delete_selections = $selection->select([
         "story_id" => $args["story_id"],
         "page_id" => $args["page_id"]
-    ], $fetch_all = true);
+    ], "", "", 5, true);
 
-    foreach ($ids as $id) {
-        $selection->delete(intval($id));
+    foreach ($delete_selections as $select) {
+        $selection->delete(intval($select["id"]));
     };
 
     $count = 1;
@@ -94,11 +93,11 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
         };
     }
 
-    // intval($args["story_id"])
+    $id = intval($args["story_id"]);
 
     $story = new Story($this->db);
     $current_story = $story->select($param = [
-        "id" => 1
+        "id" => $id
     ]);
 
     $param = [
