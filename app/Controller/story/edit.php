@@ -124,7 +124,7 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
 
     $story->update(["next_id" => $id + 1]);
 
-    return $response->withRedirect('/story/{$args["story_id"]}/{$args["page_id"]}/edit');
+    return $response->withRedirect('/story/' . $args["story_id"] . '/' . $args["page_id"] . '/edit');
 
     // return $this->view->render($response, 'story/edit.twig', $param);
 
