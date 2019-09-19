@@ -176,7 +176,7 @@ abstract class Dao
      * @param array $param 更新したい情報をid込みでセットします
      */
 
-    public function update(array $param)
+    public function update(array $param,array $primaryKeys=array("id"))
     {
 
         //クエリビルダをインスタンス化
@@ -190,7 +190,7 @@ abstract class Dao
         foreach ($param as $key => $val) {
 
             //id以外の場合
-            if ($key != "id") {
+            if (in_array($key,$primaryKeys)) {
                 $queryBuilder->set($key, ":$key");
                 $queryBuilder->setParameter(":$key", $val);
             } else {
