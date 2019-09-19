@@ -1,0 +1,19 @@
+# ストーリー閲覧ページ　内部利用変数の例(jsonで記載するが、配列で渡します)
+{
+	"story"{
+		"title":"僕らの大冒険",
+		"editor":"佐藤",
+		"theme":[	#２要素 or null
+			"織田信長",
+			"現代テクノロジー"
+		],
+		"picture":"http://example.com/picture.jpg",
+		"content":"昔々…",
+		"selection":[	# 可変個
+			"桃太郎":"http://example.com/1.html",
+			"赤ずきん":"http://example.com/2.html"
+		],
+		"like":10
+		"user_liked":true	#ログイン中のユーザがすでに「いいね」したか否か
+	}
+}
