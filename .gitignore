@@ -9,3 +9,8 @@
 .idea/dictionaries/y_fukumoto.xml
 .idea/
 *.bat
+
+# 追加
+memo.md
+.DS_Store
+
