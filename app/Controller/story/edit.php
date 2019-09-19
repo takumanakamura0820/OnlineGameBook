@@ -3,14 +3,29 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Model\Dao\Page;
+use Model\Dao\Story;
+use Model\Dao\Selection;
 
 
-// 閲覧ページ
-// $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response) {
-  $app->get('/story/edit/', function (Request $request, Response $response) {
+// 編集ページ(Get Request)
+$app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response, array $args) {
 
     //GETされた内容を取得します。
     $data = $request->getQueryParams();
+
+    // $data = array_merge($data, [
+    //     "user" => [
+    //         "name" => $_SESSION['username'],
+    //     ],
+    //     "page_id" => $args["page_id"],
+    // ]);
+
+    $data = [
+        "user" => [
+            "name" => $_SESSION['username'],
+        ],
+        "page_id" => $args["page_id"],
+    ];
 
     // Render index view
     return $this->view->render($response, 'story/edit.twig', $data);
@@ -28,42 +43,73 @@ use Model\Dao\Page;
 // });
 
 
-
-// 会員登録処理コントローラ
-// $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response) {
-  $app->post('/story/edit/', function (Request $request, Response $response) {
+// 編集ページ(Post Request)
+$app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response, array $args) {
 
     //POSTされた内容を取得します
     $data = $request->getParsedBody();
     $page = new Page($this->db);
+    $selection = new Selection($this->db);
 
-    // //ユーザーDAOをインスタンス化
-    // $user = new User($this->db);
-    //
-    // //入力されたメールアドレスの会員が登録済みかどうかをチェックします
-    // if ($user->select(array("email" => $data["email"]), "", "", 1, false)) {
-    //
-    //     //入力項目がマッチしない場合エラーを出す
-    //     $data["error"] = "このメールアドレスは既に会員登録済みです";
-    //
-    //     // 入力フォームを再度表示します
-    //     return $this->view->render($response, 'register/register.twig', $data);
-    //
-    // }
-    //
-    // //DB登録に必要ない情報は削除します
-    // unset($data["password_re"]);
-    //
-    // //DBに登録をする。戻り値は自動発番されたIDが返ってきます
-    // $id = $user->insert($data);
-    //
-    // //今登録された情報を発番されたIDで引き、会員情報を取得します（会員登録後の自動ログイン処理のため）
-    // $result = $user->select(array("id" => $id), "", "", 1, false);
-    //
-    // //セッションにユーザー情報を登録（ログイン処理）
-    // $this->session->set('user_info', $result);
+    $param = [
+        "story_id" => $args["story_id"],
+        "page_id" => $args["page_id"],
+        "picture" => $data["picture"],
+        "content" => $data["content"]
+    ];
 
-    // 登録完了ページを表示します。
-    return $this->view->render($response, 'story/edit.twig', $data);
+    if ($page->select([
+        "story_id" => $args["story_id"],
+        "page_id" => $args["page_id"],
+    ]) === false ) {  # 新規作成
+        $page->insert($param);
+    } else {  # 編集
+        $page->update($param);
+    };
+
+    $ids = $selection->select([
+        "story_id" => $args["story_id"],
+        "page_id" => $args["page_id"]
+    ], $fetch_all = true);
+
+    foreach ($ids as $id) {
+        $selection->delete(intval($id));
+    };
+
+    $count = 1;
+    while(true) {
+        $key = "selection" . strval($count);
+        if (isset($data[$key])) {
+            $param = [
+                "story_id" => $args["story_id"],
+                "page_id" => $args["page_id"],
+                "content" => $data[$key],
+                "ahead" => intval($data[$key . "ahead"])
+            ];
+
+            $selection->insert($param);
+            $count += 1;
+        } else {
+            break;
+        };
+    }
+
+    // intval($args["story_id"])
+
+    $story = new Story($this->db);
+    $current_story = $story->select($param = [
+        "id" => 1
+    ]);
+
+    $param = [
+        "user" => [
+            "name" => $_SESSION['username'],
+        ],
+        "page_id" => $id
+    ];
+
+    $story->update(["next_id" => $id + 1]);
+
+    return $this->view->render($response, 'story/edit.twig', $param);
 
 });
