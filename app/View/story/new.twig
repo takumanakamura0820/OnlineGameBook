@@ -21,30 +21,30 @@
             <input type="text" class="form-control" id="title" name="title" value="" required title="Please enter you username" placeholder="タイトル名">
         </div>
         <div class="form-group">
-            <label for="genre" class="control-label">ジャンル</label>
-            <input type="text" class="form-control" id="genre" name="genre" value="" required title="Please enter you username">
+			<label for="genre" class="control-label">ジャンル</label>
+			<input type="text" class="form-control" id="genre" name="genre" value="" required title="Please enter you username">
         </div>
         <div class="form-group">
             <label for="theme" class="control-label">テーマ</label>
             <div class="row">
                 <div class="col-6"><input type="text" class="form-control" id="theme" name="theme" value="" size="20"></div>
-                <div class="col-6"><input type="text" class="form-control" id="theme" name="theme" value="" size="20"></div>
+                <div class="col-6"><input type="text" class="form-control" id="theme2" name="theme" value="" size="20"></div>
             </div>
         </div>
 
         <label>オススメジャンル</label>
         <div class="row">
-            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">織田信長</button></div>
-            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">豊臣秀吉</button></div>
-            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">徳川家康</button></div>
-            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">安倍晋三</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block" onclick="pushGenreButton(event)" id="genre1">織田信長</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block" onclick="pushGenreButton(event)" id="genre2">豊臣秀吉</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block" onclick="pushGenreButton(event)" id="genre3">徳川家康</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block" onclick="pushGenreButton(event)" id="genre4">安倍晋三</button></div>
         </div>
         <br>
         <div class="row">
-            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">AI</button></div>
-            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">ブロックチェーン</button></div>
-            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">IoT</button></div>
-            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">5G</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block" onclick="pushGenreButton(event)" id="genre5">AI</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block" onclick="pushGenreButton(event)" id="genre6">ブロックチェーン</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block" onclick="pushGenreButton(event)" id="genre7">IoT</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block" onclick="pushGenreButton(event)" id="genre8">5G</button></div>
         </div>
         <br>
         <div class="form-group">
@@ -57,4 +57,27 @@
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}
-{% block footer_scripts_add %}{% endblock %}
+{% block footer_scripts_add %}
+	<script>
+		function pushGenreButton(evt){
+			text=evt.getTarget().innerText;
+
+			e1=document.getElementById("theme");
+			e2=document.getElementById("theme2");
+
+			if(e1.value==""){
+				e1.value=text;
+			} else if (e2.value==""){
+				e2.value=text;
+			}
+		}
+
+		function getTarget() {
+			return this.srcElement || this.target;
+		}
+        Event.prototype.getTarget = getTarget;
+
+	</script>
+
+
+{% endblock %}
