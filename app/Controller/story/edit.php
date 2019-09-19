@@ -10,6 +10,7 @@ use Model\Dao\Selection;
 // 編集ページ(Get Request)
 $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response, array $args) {
 
+
     //GETされた内容を取得します。
     $data = $request->getQueryParams();
 
