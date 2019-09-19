@@ -2,7 +2,7 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
-// use Model\Dao\User;
+use Model\Dao\Page;
 
 
 // 閲覧ページ
@@ -22,6 +22,7 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
 
     //POSTされた内容を取得します
     $data = $request->getParsedBody();
+    $page = new Page($this->db);
 
     // //ユーザーDAOをインスタンス化
     // $user = new User($this->db);
