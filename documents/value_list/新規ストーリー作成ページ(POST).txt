@@ -1,0 +1,9 @@
+新規ストーリー作成ページからの送信(POST)内容　内部利用変数の例(jsonで記載するが、www-form-urlencordedで送信。{
+{
+	"title":"僕らの大冒険",	#必須
+	"genre":"時代劇",	#nullでもOK
+	"theme1":"織田信長",
+	"theme2":"現代テクノロジー",
+	"picture":"http://example.com/picture.jpg",	#nullでもOK
+	"discription":"このお話は…"
+}

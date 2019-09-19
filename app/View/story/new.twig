@@ -1,0 +1,39 @@
+{#レイアウトを継承します#}
+{% extends "layout/layout.twig" %}
+
+{#HTMLのタイトルを定義します。#}
+{% block title %}{{ result.name }}の詳細情報{% endblock %}
+
+{# このページに適用させたいスタイルシートを指定します #}
+{% block header_scripts_add %}
+{% endblock %}
+
+{#ここから表示したい情報を記載します。#}
+{% block page_content %}
+
+    <div class="page-header text-center">
+        <h1 style="font-size: 60px;color: black;">新規ストーリー登録</h1>
+    </div>
+    <hr>
+    <form id="#" method="POST" action="#">
+        <div class="form-group">
+            <label for="title" class="control-label">タイトル</label>
+            <input type="text" class="form-control" id="title" name="title" value="" required title="Please enter you username" placeholder="タイトル名">
+        </div>
+        <div class="form-group">
+            <label for="genre" class="control-label">ジャンル</label>
+            <div class="row">
+                <div class="col-6"><input type="text" class="form-control" id="genre" name="genre" value="" size="20"></div>
+                <div class="col-6"><input type="text" class="form-control" id="genre" name="genre" value="" size="20"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="explanation" class="control-label">説明文</label>
+            <textarea type="text" class="form-control" id="explanation" name="explanation" value="" required title="Please enter your password"></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-success btn-block">ストーリー作成</button>
+    </form>
+{% endblock %}
+
+{#共通フッタとして追記したい情報を記載します。#}
+{% block footer_scripts_add %}{% endblock %}

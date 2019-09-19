@@ -1,0 +1,64 @@
+{#レイアウトを継承します#}
+{% extends "layout/layout.twig" %}
+
+{#HTMLのタイトルを定義します。#}
+{% block title %}ストーリー作成{% endblock %}
+
+{# このページに適用させたいスタイルシートを指定します #}
+{% block header_scripts_add %}
+{% endblock %}
+
+{#ここから表示したい情報を記載します。#}
+{% block page_content %}
+<div class="page-header text-center">
+  <h1>ストーリー作成</h1>
+</div>
+
+<div class="box">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="well text-center">
+        <!-- ストーリ記入するためのフォーム -->
+        <textarea name="kanso" rows="10" cols="100"></textarea>
+        <br>
+        <br>
+        <p class="text-center">
+          イメージのURLを入力してください<br />
+          <input type="text" name="namae" size="40" maxlength="20">
+          <form action="/resign/" method="post">
+            <button class="btn btn-info">イメージをアップロード</button>
+          </form>
+          <br>
+          <!-- 選択肢 -->
+          選択肢1<input type="text" name="choice1" size="100" maxlength="400"><br/>
+          選択肢2<input type="text" name="choice2" size="100" maxlength="400"><br/>
+          選択肢3<input type="text" name="choice3" size="100" maxlength="400"><br/>
+
+          {#選択肢の要素を可変させようとしているところ#}
+          <!-- <table border="1" width="600" height="10" bgcolor="#9999ff">
+          <tr><td width="10" height="100">
+          選択肢１
+        </td><td width="100" height="100">
+        <div style="height:100px; width:100px; overflow:auto;">
+        <input type="text" name="namae" size="400" maxlength="200">
+      </div>
+    </td></tr>
+  </table> -->
+  <br>
+  <!-- 可変ボタン -->
+  <!-- <button class="btn btn-info">+</button><button class="btn btn-info">-</button> -->
+
+</p/>
+<form action="/resign/" method="post">
+  <button class="btn btn-info">次の画面へ</button>
+  <button class="btn btn-info">終了する</button>
+</form>
+</p>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+{#共通フッタとして追記したい情報を記載します。#}
+{% block footer_scripts_add %}{% endblock %}
