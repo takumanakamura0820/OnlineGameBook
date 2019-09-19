@@ -19,20 +19,22 @@
     <div class="col-md-12">
       <div class="well text-center">
         <!-- ストーリ記入するためのフォーム -->
-        <textarea name="kanso" rows="10" cols="100"></textarea>
+        <textarea name="content" rows="10" cols="100"></textarea>
         <br>
         <br>
+        <!-- 画像をアップロードする部分 -->
         <p class="text-center">
           イメージのURLを入力してください<br />
-          <input type="text" name="namae" size="40" maxlength="20">
+          <input type="text" name="picture" size="40" maxlength="20">
+          <!-- アップロードボタン -->
           <form action="/resign/" method="post">
-            <button class="btn btn-info">イメージをアップロード</button>
+            <button class="btn btn-success">イメージをアップロード</button>
           </form>
           <br>
           <!-- 選択肢 -->
-          選択肢1<input type="text" name="choice1" size="100" maxlength="400"><br/>
-          選択肢2<input type="text" name="choice2" size="100" maxlength="400"><br/>
-          選択肢3<input type="text" name="choice3" size="100" maxlength="400"><br/>
+          選択肢1<input type="text" name="selection1" size="100" maxlength="400"><br/>
+          選択肢2<input type="text" name="selection2" size="100" maxlength="400"><br/>
+          選択肢3<input type="text" name="selection3" size="100" maxlength="400"><br/>
 
           {#選択肢の要素を可変させようとしているところ#}
           <!-- <table border="1" width="600" height="10" bgcolor="#9999ff">
@@ -47,12 +49,16 @@
   <br>
   <!-- 可変ボタン -->
   <!-- <button class="btn btn-info">+</button><button class="btn btn-info">-</button> -->
-
+<!-- 画面遷移するボタン達 -->
 </p/>
+<div style="display:inline-flex">
 <form action="/resign/" method="post">
-  <button class="btn btn-info">次の画面へ</button>
-  <button class="btn btn-info">終了する</button>
+  <button class="btn btn-primary">次の画面へ</button>
+  </form>
+  <form action="/resign/" method="post">
+  <button class="btn btn-danger">終了する</button>
 </form>
+</div>
 </p>
 </div>
 </div>
