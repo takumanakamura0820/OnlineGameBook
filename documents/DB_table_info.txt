@@ -10,6 +10,7 @@ Story
 	created_at	datetime
 	updated_at	datetime
 	discription	char
+	next_id int
 
 page
 	story_id	int
