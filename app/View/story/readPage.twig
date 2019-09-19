@@ -2,7 +2,7 @@
 {% extends "layout/layout.twig" %}
 
 {#HTMLのタイトルを定義します。#}
-{% block title %}{{ result.name }}の詳細情報{% endblock %}
+{% block title %}{{ story.title }}{% endblock %}
 
 {# このページに適用させたいスタイルシートを指定します #}
 {% block header_scripts_add %}
@@ -12,11 +12,11 @@
 {% block page_content %}
 
     <div class="page-header text-center">
-        <h4>{{ result.name }}</h4>
+        <h4>{{ story.title }}</h4>
     </div>
     <div class="row">
         <div class="col">
-            <img src="/assets/img/oda.png" class="img-fluid">
+            <img src="{{story.picture}}" class="img-fluid">
         </div>
     </div>
     <hr>
@@ -24,17 +24,16 @@
     <div class="row">
         <div class="col">
             {# 文章 #}
-            <p>
-              鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、鳴かぬなら、
-            </p> {# result.spec #}
+            {{story.content}}
             <hr>
             {# 選択肢 #}
             <div class="row">
                 <div class="col align-bottom">
                   <div class="row">
-                      <div class="col-4"><a href="#" class="btn btn-outline-primary" role="button">　殺してしまえ　　</a></div>
-                      <div class="col-4"><a href="#" class="btn btn-outline-primary" role="button">　鳴かせてみよう　　</a></div>
-                      <div class="col-4"><a href="#" class="btn btn-outline-primary" role="button">　鳴くまで待とう　　</a></div>
+                      {% set num = 12 / story.selection|length %}
+                      {% for key, url in story.selection %}
+                          <div class="col-{{num}}"><a href="{{url}}" class="btn btn-outline-primary" role="button">{{key}}</a></div>
+                      {% endfor %}
                   </div>
                 </div>
             </div>
