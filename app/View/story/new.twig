@@ -15,7 +15,7 @@
         <h1 style="font-size: 60px;color: black;">新規ストーリー登録</h1>
     </div>
     <hr>
-    <form id="#" method="POST" action="new">
+    <form id="#">
         <div class="form-group">
             <label for="title" class="control-label">タイトル</label>
             <input type="text" class="form-control" id="title" name="title" value="" required title="Please enter you username" placeholder="タイトル名">
@@ -51,11 +51,8 @@
             <label for="explanation" class="control-label">説明文</label>
             <textarea type="text" class="form-control" id="explanation" name="explanation" value="" required title="Please enter your password"></textarea>
         </div>
-<<<<<<< HEAD
-        <button type="submit" action = "/edit/" class="btn btn-outline-success btn-block">ストーリー作成</button>
-=======
-        <button type="submit" class="btn btn-success btn-block">ストーリー作成</button>
->>>>>>> f563a330b204c7afbb8e04c9f8112307dd698924
+
+        <button type="submit" formaction = "" formmethod="POST" class="btn btn-outline-success btn-block">ストーリー作成</button>
     </form>
 {% endblock %}
 
