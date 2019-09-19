@@ -15,23 +15,43 @@
         <h1 style="font-size: 60px;color: black;">新規ストーリー登録</h1>
     </div>
     <hr>
-    <form id="#" method="POST" action="#">
+    <form id="#" method="POST" action="new">
         <div class="form-group">
             <label for="title" class="control-label">タイトル</label>
             <input type="text" class="form-control" id="title" name="title" value="" required title="Please enter you username" placeholder="タイトル名">
         </div>
         <div class="form-group">
             <label for="genre" class="control-label">ジャンル</label>
+            <input type="text" class="form-control" id="genre" name="genre" value="" required title="Please enter you username">
+        </div>
+        <div class="form-group">
+            <label for="theme" class="control-label">テーマ</label>
             <div class="row">
-                <div class="col-6"><input type="text" class="form-control" id="genre" name="genre" value="" size="20"></div>
-                <div class="col-6"><input type="text" class="form-control" id="genre" name="genre" value="" size="20"></div>
+                <div class="col-6"><input type="text" class="form-control" id="theme" name="theme" value="" size="20"></div>
+                <div class="col-6"><input type="text" class="form-control" id="theme" name="theme" value="" size="20"></div>
             </div>
         </div>
+
+        <label>オススメジャンル</label>
+        <div class="row">
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">織田信長</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">豊臣秀吉</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">徳川家康</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">安倍晋三</button></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">AI</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">ブロックチェーン</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">IoT</button></div>
+            <div class="col-3"><button type="button" class="btn btn-outline-secondary btn-block">5G</button></div>
+        </div>
+        <br>
         <div class="form-group">
             <label for="explanation" class="control-label">説明文</label>
             <textarea type="text" class="form-control" id="explanation" name="explanation" value="" required title="Please enter your password"></textarea>
         </div>
-        <button type="submit" class="btn btn-outline-success btn-block">ストーリー作成</button>
+        <button type="submit" class="btn btn-success btn-block">ストーリー作成</button>
     </form>
 {% endblock %}
 
