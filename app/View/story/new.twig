@@ -1,0 +1,54 @@
+{#レイアウトを継承します#}
+{% extends "layout/layout.twig" %}
+
+{#HTMLのタイトルを定義します。#}
+{% block title %}退会しますか？{% endblock %}
+
+{# このページに適用させたいスタイルシートを指定します #}
+{% block header_scripts_add %}
+{% endblock %}
+
+{#ここから表示したい情報を記載します。#}
+{% block page_content %}
+    <div class="page-header text-center">
+        <h1>ストーリー作成</h1>
+    </div>
+    <div class="box">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well text-center">
+                  ストーリーを記入しましょう！
+                <br/>
+                </br/>
+                <textarea name="kanso" rows="10" cols="100"></textarea>
+                    <br>
+                    <br>
+                    <p class="text-center">
+                      イメージのURLを入力してください<br />
+                      <input type="text" name="namae" size="40" maxlength="20">
+                      <form action="/resign/" method="post">
+                          <button class="btn btn-info">イメージをアップロード</button>
+                      </form>
+                      <br>
+                      <table border="1" width="200" height="100" bgcolor="#9999ff">
+<tr><td width="100" height="100">
+セル1
+</td><td width="100" height="100">
+<div style="height:100px; width:100px; overflow-x:scroll;">
+セル2
+kkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+</div>
+</td></tr>
+</table>
+                    <form action="/resign/" method="post">
+                        <button class="btn btn-info">投稿する</button>
+                    </form>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{#共通フッタとして追記したい情報を記載します。#}
+{% block footer_scripts_add %}{% endblock %}
