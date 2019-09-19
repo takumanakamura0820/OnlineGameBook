@@ -1,16 +1,10 @@
-# ストーリー編集ページからの送信(POST)内容　内部利用変数の例(jsonで記載するが、www-form-urlencordedで送信。{
-	"story"{
-		"title":"僕らの大冒険",	#必須
-		"genre":"時代劇",	#nullでもOK
-		"theme1":"織田信長",
-		"theme2":"現代テクノロジー",
-		"picture":"http://example.com/picture.jpg",	#nullでもOK
-		"content":"昔々…",
-		"selection1":"桃太郎",
-		"selection1ahead":"5",		#ページIDで指定。nullで新規作成
-		"selection2":"赤ずきん",
-		"selection2ahead":"10",
-		#数字を増やして任意個追加可能
-	}
+# ページ編集ページからの送信(POST)内容　内部利用変数の例(jsonで記載するが、www-form-urlencordedで送信。{
+
+	"picture":"http://example.com/picture.jpg",	#nullでもOK
+	"content":"昔々…",
+	"selection1":"桃太郎",
+	"selection1ahead":"5",		#ページIDで指定。nullで新規作成
+	"selection2":"赤ずきん",
+	"selection2ahead":"10",
+	#数字を増やして任意個追加可能
 }
-ｘ
