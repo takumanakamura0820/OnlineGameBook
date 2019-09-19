@@ -10,6 +10,7 @@ use Model\Dao\Selection;
 // 編集ページ(Get Request)
 $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response, array $args) {
 
+
     //GETされた内容を取得します。
     $data = $request->getQueryParams();
 
@@ -58,22 +59,30 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
         "content" => $data["content"]
     ];
 
+    $current_page = $page->select([
+        "story_id" => $args["story_id"],
+        "page_id" => $args["page_id"],
+    ]);
+
+    // $page->update([
+    //     "story_id" => $args["story_id"],
+    //     "page_id" => $args["page_id"],
+    // ]);
+
     if ($page->select([
         "story_id" => $args["story_id"],
         "page_id" => $args["page_id"],
     ]) === false ) {  # 新規作成
         $page->insert($param);
-    } else {  # 編集
-        $page->update($param);
     };
 
-    $ids = $selection->select([
+    $delete_selections = $selection->select([
         "story_id" => $args["story_id"],
         "page_id" => $args["page_id"]
-    ], $fetch_all = true);
+    ], "", "", 5, true);
 
-    foreach ($ids as $id) {
-        $selection->delete(intval($id));
+    foreach ($delete_selections as $select) {
+        $selection->delete(intval($select["id"]));
     };
 
     $count = 1;
@@ -94,11 +103,11 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
         };
     }
 
-    // intval($args["story_id"])
+    $id = intval($args["story_id"]);
 
     $story = new Story($this->db);
     $current_story = $story->select($param = [
-        "id" => 1
+        "id" => $id
     ]);
 
     $param = [
@@ -110,6 +119,8 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
 
     $story->update(["next_id" => $id + 1]);
 
-    return $this->view->render($response, 'story/edit.twig', $param);
+    return $response->withRedirect('/story/{$args["story_id"]}/{$args["page_id"]}/edit');
+
+    // return $this->view->render($response, 'story/edit.twig', $param);
 
 });
