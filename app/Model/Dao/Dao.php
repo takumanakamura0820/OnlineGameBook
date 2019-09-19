@@ -180,7 +180,7 @@ abstract class Dao
     {
 
         //クエリビルダをインスタンス化
-        $queryBuilder = new QueryBuilder($this->db);
+        $queryBuilder = new QueryBuilder($this->db,true);
 
         //ベースクエリを構築する
         $queryBuilder
