@@ -6,10 +6,11 @@ Story
 	title		char
 	theme1	char
 	theme2	char
-	picture	binary
+	picture	char		# URLで格納
 	created_at	datetime
 	updated_at	datetime
 	discription	char
+	next_id int
 
 page
 	story_id	int
