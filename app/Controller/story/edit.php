@@ -28,8 +28,7 @@ $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Respon
     ];
 
     // Render index view
-    return $response->withRedirect('/story/{$args["story_id"]}/{$args["page_id"]}/edit');
-    // return $this->view->render($response, 'story/edit.twig', $data);
+    return $this->view->render($response, 'story/edit.twig', $data);
 
 });
 
@@ -58,6 +57,16 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
         "picture" => $data["picture"],
         "content" => $data["content"]
     ];
+
+    $current_page = $page->select([
+        "story_id" => $args["story_id"],
+        "page_id" => $args["page_id"],
+    ]);
+
+    // $page->update([
+    //     "story_id" => $args["story_id"],
+    //     "page_id" => $args["page_id"],
+    // ]);
 
     if ($page->select([
         "story_id" => $args["story_id"],
@@ -109,6 +118,8 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
 
     $story->update(["next_id" => $id + 1]);
 
-    return $this->view->render($response, 'story/edit.twig', $param);
+    return $response->withRedirect('/story/{$args["story_id"]}/{$args["page_id"]}/edit');
+
+    // return $this->view->render($response, 'story/edit.twig', $param);
 
 });
