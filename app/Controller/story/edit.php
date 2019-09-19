@@ -74,7 +74,12 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
         "page_id" => $args["page_id"],
     ]) === false ) {  # 新規作成
         $page->insert($param);
-    };
+    }
+
+    //  else {
+    //     $page->update($param, ["story_id", "page_id"]);
+    // };
+
 
     $delete_selections = $selection->select([
         "story_id" => $args["story_id"],
