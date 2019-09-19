@@ -36,7 +36,7 @@ $app->get('/story/{story_id}/{page_id}/', function (Request $request, Response $
 
 	if(!empty($this->session->get('user_info'))){
 		//ログインされている場合
-dd($this->session->user_info);
+var_dump($this->session->user_info);
 		$data["user"]["name"]=$this->session->user_info->name;
 		$data["story"]["user_liked"]=count($like->select(array("story_id"=>$args["story_id"],"user_id"=>$this->session->get('user_info')->id),"","",null,true))>=1;
 	} else {
