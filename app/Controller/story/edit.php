@@ -6,7 +6,8 @@ use Model\Dao\Page;
 
 
 // 閲覧ページ
-$app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response) {
+// $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response) {
+  $app->get('/story/edit/', function (Request $request, Response $response) {
 
     //GETされた内容を取得します。
     $data = $request->getQueryParams();
@@ -29,7 +30,8 @@ $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Respon
 
 
 // 会員登録処理コントローラ
-$app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response) {
+// $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response) {
+  $app->post('/story/edit/', function (Request $request, Response $response) {
 
     //POSTされた内容を取得します
     $data = $request->getParsedBody();
