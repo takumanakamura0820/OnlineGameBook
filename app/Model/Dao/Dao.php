@@ -190,7 +190,7 @@ abstract class Dao
         foreach ($param as $key => $val) {
 
             //id以外の場合
-            if (in_array($key,$primaryKeys)) {
+            if (!in_array($key,$primaryKeys)) {
                 $queryBuilder->set($key, ":$key");
                 $queryBuilder->setParameter(":$key", $val);
             } else {
