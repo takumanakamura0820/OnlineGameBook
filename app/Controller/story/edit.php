@@ -35,7 +35,7 @@ $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Respon
     $page_data = $page->getPageByStoryId($args["story_id"]);
     $master = [];
     foreach ($page_data as $value) {
-        $row = [ "key" => $value['page_id'] , "text" => $value['page_id'].":".$value['title']];
+        $row = [ "key" => $value['page_id'] , "text" => $value['page_id'].":".$value['title'], "color" => "#fefbd8"];
         array_push($master,$row);
     }
 
