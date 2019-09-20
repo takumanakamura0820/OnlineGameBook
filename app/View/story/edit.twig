@@ -93,7 +93,7 @@
 		</div>
 		<br>
 		<br>
-		<label>問題文</label>
+		<label>本文</label>
         <textarea class="form-control" name="content" rows="10" cols="100" required>{{input.content}}</textarea>
         <br>
         <br>
@@ -114,6 +114,7 @@
             選択肢2<input type="text" class="form-control" name="selection2" size="100" maxlength="400">　遷移先<input type="text" name="selection2ahead" class="form-control" size="3" maxlength="10"><br/>
             選択肢3<input type="text" class="form-control" name="selection3" size="100" maxlength="400">　遷移先<input type="text" name="selection3ahead" class="form-control" size="3" maxlength="10"><br/>
           {% endfor %}
+		※遷移先に0を入力するとストーリーを終了させることができます。
         </div>
 
           {#選択肢の要素を可変させようとしているところ#}
