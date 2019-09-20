@@ -111,7 +111,7 @@
             <label for="selection">選択肢{{row + 1}}</label>
             <input class="form-control" type="text" name="selection{{row + 1}}" size="40" maxlength="400" value="{{value.content}}">　
             <label for="ahead">遷移先</label>
-            <input class="form-control" type="text" name="selection{{row + 1}}ahead" size="3" maxlength="10" value="{{ 0 < value.ahead : value.ahead  ?  0 }}">
+            <input class="form-control" type="text" name="selection{{row + 1}}ahead" size="3" maxlength="10" value="{{ 0 < value.ahead ? value.ahead  :  0 }}">
             <br />
           </div>
           {% else %}
