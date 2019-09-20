@@ -90,11 +90,18 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
     while(true) {
         $key = "selection" . strval($count);
         if (!empty($data[$key])) {
+
+            $ahead = intval($data[$key . "ahead"]);
+
+            if ($ahead === 0) {
+                $ahead = -1;
+            }
+
             $param = [
                 "story_id" => $args["story_id"],
                 "page_id" => $args["page_id"],
                 "content" => $data[$key],
-                "ahead" => intval($data[$key . "ahead"])
+                "ahead" => $ahead
             ];
 
             $selection->insert($param);

@@ -12,7 +12,7 @@ $app->get('/story/{story_id}/{page_id}/', function (Request $request, Response $
     $data = $request->getQueryParams();
 
     // page_id = 0 -> Topページへ
-    if ( $args["page_id"] === "0" ) {
+    if ( $args["page_id"] === "-1" ) {
         return $response->withRedirect('/');
     }
 
