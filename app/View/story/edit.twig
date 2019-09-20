@@ -27,14 +27,13 @@
           イメージのURLを入力してください<br />
           <input type="text" name="picture" size="40" maxlength="20">
           <!-- アップロードボタン -->
-
             <button class="btn btn-success">イメージをアップロード</button>
 
           <br>
           <!-- 選択肢 -->
-          選択肢1<input type="text" name="selection1" size="100" maxlength="400"><br/>
-          選択肢2<input type="text" name="selection2" size="100" maxlength="400"><br/>
-          選択肢3<input type="text" name="selection3" size="100" maxlength="400"><br/>
+          選択肢1<input type="text" name="selection1" size="100" maxlength="400">　遷移先<input type="text" name="selection1ahead" size="3" maxlength="10"><br/>
+          選択肢2<input type="text" name="selection2" size="100" maxlength="400">　遷移先<input type="text" name="selection2ahead" size="3" maxlength="10"><br/>
+          選択肢3<input type="text" name="selection3" size="100" maxlength="400">　遷移先<input type="text" name="selection3ahead" size="3" maxlength="10"><br/>
 
           {#選択肢の要素を可変させようとしているところ#}
           <!-- <table border="1" width="600" height="10" bgcolor="#9999ff">
@@ -53,8 +52,8 @@
 </p/>
 <div style="display:inline-flex">
 
-  <button class="btn btn-primary">次の画面へ</button>
-  <button class="btn btn-danger">終了する</button>
+  <button class="btn btn-primary" formaction = "" formmethod="POST" >次の画面へ</button>
+  <button class="btn btn-danger" formaction = "" formmethod="POST" >終了する</button>
 
 </p>
 </div>

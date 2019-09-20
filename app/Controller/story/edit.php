@@ -10,6 +10,7 @@ use Model\Dao\Selection;
 // 編集ページ(Get Request)
 $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response, array $args) {
 
+
     //GETされた内容を取得します。
     $data = $request->getQueryParams();
 
@@ -73,7 +74,12 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
         "page_id" => $args["page_id"],
     ]) === false ) {  # 新規作成
         $page->insert($param);
-    };
+    }
+
+    //  else {
+    //     $page->update($param, ["story_id", "page_id"]);
+    // };
+
 
     $delete_selections = $selection->select([
         "story_id" => $args["story_id"],
@@ -118,7 +124,7 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
 
     $story->update(["next_id" => $id + 1]);
 
-    return $response->withRedirect('/story/{$args["story_id"]}/{$args["page_id"]}/edit');
+    return $response->withRedirect('/story/' . $args["story_id"] . '/' . $args["page_id"] . '/edit');
 
     // return $this->view->render($response, 'story/edit.twig', $param);
 
