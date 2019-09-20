@@ -23,6 +23,7 @@
                     <th scope="col">タイトル</th>
                     <th scope="col">テーマ</th>
                     <th scope="col">概要</th>
+                    <th scope="col">作成者用リンク</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,15 +34,20 @@
                 {% for story in stories %}
                     <tr>
                         <td class="align-middle" scope="col">
-                            <a href="/story/{{ story.id }}/1">
+                            <a href="/story/{{ story.id }}/1/">
                                 <img src="{{ story.picture }}" width="200" class="img-fluid">
                             </a>
                         </td>
                         <td class="align-middle" scope="col">
-                            <a href="/story/{{ story.id }}/1">{{ story.title }}</a>
+                            <a href="/story/{{ story.id }}/1/">{{ story.title }}</a>
                         </td>
                         <td class="align-middle" scope="col">{{ story.theme1 }} × {{ story.theme2 }}</td>
                         <td class="align-middle" scope="col">{{ story.discription }}</td>
+                        <td class="align-middle" scope="col">
+                            {% if story.is_mine %}
+                                <a href="/story/{{ story.id }}/1/edit">{{ 編集 }}</a>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
