@@ -89,7 +89,7 @@ window.onload = function () {
           {% for row,value in selection_list %}
           <div class="form-group">
             <label for="selection">選択肢{{row + 1}}</label>
-            <input class="form-control" type="text" name="selection{{row + 1}}" size="40" maxlength="400" value="{{value.content}}">　
+            <input class="form-control" type="text" name="selection{{row + 1}}" size="40" maxlength="400" value="{{value.content}}">
             <label for="ahead">遷移先</label>
             <input class="form-control" type="text" name="selection{{row + 1}}ahead" size="3" maxlength="10" value="{{ 0 < value.ahead ? value.ahead  :  0 }}">
             <br />
@@ -103,7 +103,7 @@ window.onload = function () {
           </div><br />
           <div class="form-group">
             <label for="selection">選択肢2</label>
-            <input type="text" class="form-control" name="selection2" size="40" maxlength="400">　
+            <input type="text" class="form-control" name="selection2" size="40" maxlength="400">
             <label for="ahead">遷移先</label>
             <input type="text" name="selection2ahead" class="form-control" size="3" maxlength="10">
           </div>
@@ -119,7 +119,7 @@ window.onload = function () {
               {% for i in num..3 %}
               <div class="form-group">
                           <label for="selection">選択肢{{i}}</label>
-                          <input type="text" class="form-control" name="selection{{i}}" size="40" maxlength="400">　
+                          <input type="text" class="form-control" name="selection{{i}}" size="40" maxlength="400">
                           <label for="ahead">遷移先</label>
                           <input type="text" name="selection{{i}}ahead" class="form-control" size="3" maxlength="10">
                         </div>
