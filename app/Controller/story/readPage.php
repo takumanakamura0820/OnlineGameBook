@@ -45,8 +45,8 @@ $app->get('/story/{story_id}/{page_id}/', function (Request $request, Response $
 	$data["story"]["editor"]=$user->select(array("id"=>$story["user_id"]),"","",1,false)["name"];
     // dd($data["story"]);
 
-	$data["story"]=array_merge($data["story"],$page);
-	//$data["story"] = $data["story"] + $page;
+	// $data["story"]=array_merge($data["story"],$page);
+	$data["story"] = $data["story"] + $page;
 
 	foreach($selection as $v){
 		$data["story"]["selection"][$v["content"]]="/story/".$args["story_id"]."/".$v["ahead"]."/";

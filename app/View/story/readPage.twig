@@ -18,7 +18,7 @@
         <h4>{{ story.page_title }}</h4>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col" style="text-align:center;">
             <img src="{{story.picture}}" class="img-fluid">
         </div>
     </div>
@@ -35,7 +35,7 @@
                   <div class="row">
                       {% set num = 12 / story.selection|length %}
                       {% for key, url in story.selection %}
-                          <div class="col-{{num}}"><a href="{{url}}" class="btn btn-outline-primary" role="button">{{key}}</a></div>
+                          <div class="col-{{num}}" style="text-align:center;"><a href="{{url}}" class="btn btn-outline-primary" role="button">{{key}}</a></div>
                       {% endfor %}
                   </div>
                 </div>
