@@ -11,48 +11,49 @@
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
 
+<!-- ツリー表示 -->
 <script src="/assets/js/go.js"></script>
 
-  <script id="code">
-    window.onload = function () {
-      if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
-      var $ = go.GraphObject.make;  // for conciseness in defining templates
+<script id="code">
+window.onload = function () {
+  if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
+  var $ = go.GraphObject.make;  // for conciseness in defining templates
 
-      myDiagram =
-        $(go.Diagram, "myDiagramDiv",  // must name or refer to the DIV HTML element
-          {
-            initialAutoScale: go.Diagram.Uniform,  // an initial automatic zoom-to-fit
-            contentAlignment: go.Spot.Center,  // align document to the center of the viewport
-            layout:
-              $(go.ForceDirectedLayout,  // automatically spread nodes apart
-                { maxIterations: 200, defaultSpringLength: 30, defaultElectricalCharge: 100 })
-          });
+  myDiagram =
+  $(go.Diagram, "myDiagramDiv",  // must name or refer to the DIV HTML element
+  {
+    initialAutoScale: go.Diagram.Uniform,  // an initial automatic zoom-to-fit
+    contentAlignment: go.Spot.Center,  // align document to the center of the viewport
+    layout:
+    $(go.ForceDirectedLayout,  // automatically spread nodes apart
+      { maxIterations: 200, defaultSpringLength: 30, defaultElectricalCharge: 100 })
+    });
 
-      // define each Node's appearance
-      myDiagram.nodeTemplate =
-        $(go.Node, "Auto",  // the whole node panel
-          { locationSpot: go.Spot.Center },
-          // define the node's outer shape, which will surround the TextBlock
-          $(go.Shape, "Rectangle",
-            { fill: $(go.Brush, "Linear", { 0: "rgb(254, 201, 0)", 1: "rgb(254, 162, 0)" }), stroke: "black" }),
-          $(go.TextBlock,
-            { font: "bold 10pt helvetica, bold arial, sans-serif", margin: 4 },
-            new go.Binding("text", "text"))
-        );
+    // define each Node's appearance
+    myDiagram.nodeTemplate =
+    $(go.Node, "Auto",  // the whole node panel
+    { locationSpot: go.Spot.Center },
+    // define the node's outer shape, which will surround the TextBlock
+    $(go.Shape, "Rectangle",
+    { fill: $(go.Brush, "Linear", { 0: "rgb(254, 201, 0)", 1: "rgb(254, 162, 0)" }), stroke: "black" }),
+    $(go.TextBlock,
+      { font: "bold 10pt helvetica, bold arial, sans-serif", margin: 4 },
+      new go.Binding("text", "text"))
+    );
 
-      // replace the default Link template in the linkTemplateMap
-      myDiagram.linkTemplate =
-        $(go.Link,  // the whole link panel
-          $(go.Shape,  // the link shape
-            { stroke: "black" }),
-          $(go.Shape,  // the arrowhead
-            { toArrow: "standard", stroke: null }),
+    // replace the default Link template in the linkTemplateMap
+    myDiagram.linkTemplate =
+    $(go.Link,  // the whole link panel
+      $(go.Shape,  // the link shape
+        { stroke: "black" }),
+        $(go.Shape,  // the arrowhead
+          { toArrow: "standard", stroke: null }),
           $(go.Panel, "Auto",
-            $(go.Shape,  // the label background, which becomes transparent around the edges
-              {
-                fill: $(go.Brush, "Radial", { 0: "rgb(240, 240, 240)", 0.3: "rgb(240, 240, 240)", 1: "rgba(240, 240, 240, 0)" }),
-                stroke: null
-              }),
+          $(go.Shape,  // the label background, which becomes transparent around the edges
+            {
+              fill: $(go.Brush, "Radial", { 0: "rgb(240, 240, 240)", 0.3: "rgb(240, 240, 240)", 1: "rgba(240, 240, 240, 0)" }),
+              stroke: null
+            }),
             $(go.TextBlock,  // the label text
               {
                 textAlign: "center",
@@ -61,117 +62,112 @@
                 margin: 4
               },
               new go.Binding("text", "text"))
-          )
-        );
+            )
+          );
 
-      // create the model for the concept map
-      var nodeDataArray = {{master|raw}};
-      var linkDataArray = {{selection|raw}};
-      myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
-    }
-  </script>
-
-
-<div class="page-header text-center">
-  <h1>ストーリー作成</h1>
-</div>
-
-<div id="sample">
-  <div id="myDiagramDiv" style="background-color: whitesmoke; border: solid 1px black; width: 100%; height: 700px"></div>
-</div>
+          // create the model for the concept map
+          var nodeDataArray = {{master|raw}};
+          var linkDataArray = {{selection|raw}};
+          myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+        }
+        </script>
 
 
-<form type = "submit" class="form-inline">
-<div class="box">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="well text-center">
-        <!-- ストーリ記入するためのフォーム -->
-        <div class="form-group">
-        <label>タイトル</label>
-		<input type="text" class="form-control" class="h3" name  ="title" required placeholder="タイトルを入力" value="{{input.title}}">
-		</div>
-		<br>
-		<br>
-		<label>本文</label>
-        <textarea class="form-control" name="content" rows="10" cols="100" required>{{input.content}}</textarea>
-        <br>
-        <br>
-        <!-- 画像をアップロードする部分 -->
-        <div class="form-group">
-          <!-- イメージのURLを入力してください<br /> -->
-          <input type="text" name="picture" class="form-control" size="40" value="{{row.picture}}" maxlength="255" placeholder="イメージのURLを入力してください">
-          <!-- アップロードボタン -->
-          <div>OR</div>
-          <button class="btn btn-success">ファイルを選択</button>
+        <!-- 編集フォーム -->
+        <div class="page-header text-center">
+          <h1>ストーリー作成</h1>
         </div>
 
-          {% for row,value in selection_list %}
-          <div class="form-group">
-            <label for="selection">選択肢{{row + 1}}</label>
-            <input class="form-control" type="text" name="selection{{row + 1}}" size="40" maxlength="400" value="{{value.content}}">　
-            <label for="ahead">遷移先</label>
-            <input class="form-control" type="text" name="selection{{row + 1}}ahead" size="3" maxlength="10" value="{{value.ahead}}">
-            <br />
-          </div>
-          {% else %}
-          <div class="form-group">
-            <label for="selection">選択肢1</label>
-            <input type="text" class="form-control " name="selection1" size="40" maxlength="400">
-            <label for="ahead">遷移先</label>
-            <input type="text" name="selection1ahead" class="form-control" size="3" maxlength="10" required>
-          </div><br />
-          <div class="form-group">
-            <label for="selection">選択肢2</label>
-            <input type="text" class="form-control" name="selection2" size="40" maxlength="400">　
-            <label for="ahead">遷移先</label>
-            <input type="text" name="selection2ahead" class="form-control" size="3" maxlength="10">
-          </div>
-          <div class="form-group">
-            <label for="selection">選択肢3</label>
-            <input type="text" class="form-control" name="selection3" size="40" maxlength="400">
-            <label for="ahead">遷移先</label>
-            <input type="text" name="selection3ahead" class="form-control" size="3" maxlength="10">
-          </div>
-          {% endfor %}
-		  {% if 0 < selection|length and selection_list | length < 3 %}
-          {% set num = (selection_list|length -3)|abs%}
-              {% for i in num..3 %}
-              <div class="form-group">
-                          <label for="selection">選択肢1</label>
-                          <input type="text" class="form-control" name="selection{{i}}" size="40" maxlength="400">　
-                          <label for="ahead">遷移先</label>
-                          <input type="text" name="selection{{i}}ahead" class="form-control" size="3" maxlength="10">
-                        </div>
-              {% endfor %}
-          {%endif%}
-
-          ※遷移先に0を入力するとストーリーを終了させることができます。
+        <div id="sample">
+          <div id="myDiagramDiv" style="background-color: whitesmoke; border: solid 1px black; width: 100%; height: 700px"></div>
         </div>
 
-          {#選択肢の要素を可変させようとしているところ#}
-          <!-- <table border="1" width="600" height="10" bgcolor="#9999ff">
-          <tr><td width="10" height="100">
-          選択肢１
-        </td><td width="100" height="100">
-        <div style="height:100px; width:100px; overflow:auto;">
-        <input type="text" name="namae" size="400" maxlength="200">
+        <form type = "submit" class="form-inline">
+          <div class="box">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="well text-center">
+                  <!-- ストーリ記入するためのフォーム -->
+                  <div class="form-group">
+                    <label>タイトル</label>
+                    <input type="text" class="form-control" class="h3" name  ="title" required placeholder="タイトルを入力" value="{{input.title}}">
+                  </div>
+                  
+                  <label>本文</label>
+                  <textarea class="form-control" name="content" rows="10" cols="100" required>{{input.content}}</textarea>
+
+                  <!-- 画像をアップロードする部分 -->
+                  <div class="form-group">
+                    <!-- イメージのURLを入力してください<br /> -->
+                    <input type="text" name="picture" class="form-control" size="40" value="{{row.picture}}" maxlength="255" placeholder="イメージのURLを入力してください">
+                    <!-- アップロードボタン -->
+                    <div>OR</div>
+                    <button class="btn btn-success">ファイルを選択</button>
+                  </div>
+
+                  {% for row,value in selection_list %}
+                  <div class="form-group">
+                    <label for="selection">選択肢{{row + 1}}</label>
+                    <input class="form-control" type="text" name="selection{{row + 1}}" size="40" maxlength="400" value="{{value.content}}">　
+                    <label for="ahead">遷移先</label>
+                    <input class="form-control" type="text" name="selection{{row + 1}}ahead" size="3" maxlength="10" value="{{value.ahead}}">
+                    <br />
+                  </div>
+                  {% else %}
+                  <div class="form-group">
+                    <label for="selection">選択肢1</label>
+                    <input type="text" class="form-control " name="selection1" size="40" maxlength="400">
+                    <label for="ahead">遷移先</label>
+                    <input type="text" name="selection1ahead" class="form-control" size="3" maxlength="10" required>
+                  </div>
+<br>
+                  <div class="form-group">
+                    <label for="selection">選択肢2</label>
+                    <input type="text" class="form-control " name="selection2" size="40" maxlength="400">
+                    <label for="ahead">遷移先</label>
+                    <input type="text" name="selection2ahead" class="form-control" size="3" maxlength="10" required>
+                  </div>
+<br>
+                  <div class="form-group">
+                    <label for="selection">選択肢3</label>
+                    <input type="text" class="form-control " name="selection3" size="40" maxlength="400">
+                    <label for="ahead">遷移先</label>
+                    <input type="text" name="selection3ahead" class="form-control" size="3" maxlength="10" required>
+                  </div>
+                  {% endfor %}
+                  {% if 0 < selection|length and selection_list | length < 3 %}
+                  {% set num = (selection_list|length -3)|abs%}
+                  {% for i in num..3 %}
+
+                  {% endfor %}
+                  {%endif%}
+
+                  ※遷移先に0を入力するとストーリーを終了させることができます。
+                </div>
+
+                {#選択肢の要素を可変させようとしているところ#}
+                <!-- <table border="1" width="600" height="10" bgcolor="#9999ff">
+                <tr><td width="10" height="100">
+                選択肢１
+              </td><td width="100" height="100">
+              <div style="height:100px; width:100px; overflow:auto;">
+              <input type="text" name="namae" size="400" maxlength="200">
+            </div>
+          </td></tr>
+        </table> -->
+        <br>
+        <!-- 可変ボタン -->
+        <!-- <button class="btn btn-info">+</button><button class="btn btn-info">-</button> -->
+        <!-- 画面遷移するボタン達 -->
+        <div style="display:inline-flex">
+
+          <button class="btn btn-primary" formaction = "" formmethod="POST" >次の画面へ</button>
+          <button class="btn btn-danger" formaction = "" formmethod="POST" name="exit">終了する</button>
+
+        </p>
       </div>
-    </td></tr>
-  </table> -->
-  <br>
-  <!-- 可変ボタン -->
-  <!-- <button class="btn btn-info">+</button><button class="btn btn-info">-</button> -->
-<!-- 画面遷移するボタン達 -->
-<div style="display:inline-flex">
-
-  <button class="btn btn-primary" formaction = "" formmethod="POST" >次の画面へ</button>
-  <button class="btn btn-danger" formaction = "" formmethod="POST" name="exit">終了する</button>
-
-</p>
-</div>
-</div>
-</div>
+    </div>
+  </div>
 </div>
 </form>
 {% endblock %}

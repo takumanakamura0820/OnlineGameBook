@@ -8,6 +8,7 @@ use Model\Dao\Selection;
 
 // 編集ページ(Get Request)
 $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response, array $args) {
+  
 
     $data = [
         "user" => [
@@ -63,7 +64,6 @@ $app->get('/story/{story_id}/new', function (Request $request, Response $respons
 
 // 編集ページ(Post Request)
 $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response, array $args) {
-
 
     //POSTされた内容を取得します
     $data = $request->getParsedBody();
