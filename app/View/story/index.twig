@@ -21,8 +21,8 @@
                 <tr>
                     <th scope="col">画像</th>
                     <th scope="col">タイトル</th>
-                    <th scope="col">特徴</th>
-                    <th scope="col">価格</th>
+                    <th scope="col">テーマ</th>
+                    <th scope="col">概要</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,18 +30,18 @@
                 {# コントローラで指定した $data["result"] は Twigでは result として扱えます #}
                 {# for文でresultの中の一次元目の配列をループで回す形となります #}
                 {# ループ処理中の1行はrowの中に入りますので、このループ中はrow.カラム名で情報を表示することが可能です #}
-                {% for row in result %}
+                {% for story in stories %}
                     <tr>
                         <td class="align-middle" scope="col">
-                            <a href="/item/detail/{{ row.id }}">
-                                <img src="{{ row.image_url }}" width="200" class="img-fluid">
+                            <a href="/story/{{ story.id }}/1">
+                                <img src="{{ story.picture }}" width="200" class="img-fluid">
                             </a>
                         </td>
                         <td class="align-middle" scope="col">
-                            <a href="/item/detail/{{ row.id }}">{{ row.name }}</a>
+                            <a href="/story/{{ story.id }}/1">{{ story.title }}</a>
                         </td>
-                        <td class="align-middle" scope="col">{{ row.spec }}</td>
-                        <td class="align-middle" scope="col">{{ row.price | number_format }}円</td>
+                        <td class="align-middle" scope="col">{{ story.theme1 }} × {{ story.theme2 }}</td>
+                        <td class="align-middle" scope="col">{{ story.discription }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
