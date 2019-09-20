@@ -1,21 +1,22 @@
 # ãƒšãƒ¼ã‚¸ç·¨é›†ãƒšãƒ¼ã‚¸ã‹ã‚‰ã®é€ä¿¡(POST)å†…å®¹ã€€å†…éƒ¨åˆ©ç”¨å¤‰æ•°ã®ä¾‹(jsonã§è¨˜è¼‰ã™ã‚‹ãŒã€www-form-urlencordedã§é€ä¿¡ã€‚{
-	[
-		"title":"ƒ^ƒCƒgƒ‹"
-		"picture":"http://example.com/picture.jpg",	#nullã§ã‚‚OK
-		"theme1":"D“cM’·",
-		"theme2":"Œ»‘ãƒeƒNƒmƒƒW[",
-		"discription":
-		"author":"²X–Ø"
-		"is_myne":true		#true‚È‚ç•ÒWƒy[ƒW‚Ö‚ÌƒŠƒ“ƒN‚ğ•\¦
-	],
-
-	[
-		"title":"ƒ^ƒCƒgƒ‹"
-		"picture":"http://example.com/picture.jpg",	#nullã§ã‚‚OK
-		"theme1":"D“cM’·",
-		"theme2":"Œ»‘ãƒeƒNƒmƒƒW[",
-		"discription":
-		"author":"²X–Ø"
-		"is_myne":true		#true‚È‚ç•ÒWƒy[ƒW‚Ö‚ÌƒŠƒ“ƒN‚ğ•\¦
-	],
+stories:{
+		[
+			"title":"ã‚¿ã‚¤ãƒˆãƒ«ã¯æœªå®šã§ã™ã€‚"
+			"picture":"http://example.com/picture.jpg",	#nullã§ã‚‚OK
+			"theme1":"ç¹”ç”°ä¿¡é•·",
+			"theme2":"ç¾ä»£ãƒ†ã‚¯ãƒãƒ­ã‚¸ãƒ¼",
+			"discription":"ç§ã®å‡¦å¥³ä½œã§ã™ã€‚"
+			"author":"ä½ã€…æœ¨"
+			"is_myne":true		#trueãªã‚‰ç·¨é›†ãƒšãƒ¼ã‚¸ã¸ã®ãƒªãƒ³ã‚¯ã‚‚è¡¨ç¤º
+		],
+		[
+			"title":"ã‚¿ã‚¤ãƒˆãƒ«ã¯æœªå®šã§ã™ã€‚"
+			"picture":"http://example.com/picture.jpg",	#nullã§ã‚‚OK
+			"theme1":"ç¹”ç”°ä¿¡é•·",
+			"theme2":"ç¾ä»£ãƒ†ã‚¯ãƒãƒ­ã‚¸ãƒ¼",
+			"discription":"ç§ã®å‡¦å¥³ä½œã§ã™ã€‚"
+			"author":"ä½ã€…æœ¨"
+			"is_myne":true		#trueãªã‚‰ç·¨é›†ãƒšãƒ¼ã‚¸ã¸ã®ãƒªãƒ³ã‚¯ã‚‚è¡¨ç¤º
+		],...			#å¯å¤‰å€‹
+	}
 }
