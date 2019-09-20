@@ -1,4 +1,4 @@
-{#レイアウトを継承します#}
+f{#レイアウトを継承します#}
 {% extends "layout/layout.twig" %}
 
 {#HTMLのタイトルを定義します。#}
@@ -89,12 +89,12 @@
         <!-- ストーリ記入するためのフォーム -->
         <div class="form-group">
         <label>タイトル</label>
-		<input type="text" class="form-control" class="h3" name  ="title" require placeholder="タイトルを入力" value="{{input.title}}">
+		<input type="text" class="form-control" class="h3" name  ="title" required placeholder="タイトルを入力" value="{{input.title}}">
 		</div>
 		<br>
 		<br>
 		<label>問題文</label>
-        <textarea class="form-control" name="content" rows="10" cols="100">{{input.content}}</textarea>
+        <textarea class="form-control" name="content" rows="10" cols="100" required>{{input.content}}</textarea>
         <br>
         <br>
         <!-- 画像をアップロードする部分 -->
@@ -110,7 +110,7 @@
           {% for row,value in selection_list %}
             選択肢{{row + 1}}<input class="form-control" type="text" name="selection1" size="100" maxlength="400" value="{{value.content}}">　遷移先<input type="text" class="form-control" name="selection1ahead" size="3" maxlength="10" value="{{value.ahead}}"><br/>
           {% else %}
-            選択肢1<input type="text" class="form-control" name="selection1" size="100" maxlength="400">　遷移先<input type="text" name="selection1ahead" class="form-control" size="3" maxlength="10"><br/>
+            選択肢1<input type="text" class="form-control" name="selection1" size="100" maxlength="400">　遷移先<input type="text" name="selection1ahead" class="form-control" size="3" maxlength="10" required><br/>
             選択肢2<input type="text" class="form-control" name="selection2" size="100" maxlength="400">　遷移先<input type="text" name="selection2ahead" class="form-control" size="3" maxlength="10"><br/>
             選択肢3<input type="text" class="form-control" name="selection3" size="100" maxlength="400">　遷移先<input type="text" name="selection3ahead" class="form-control" size="3" maxlength="10"><br/>
           {% endfor %}
