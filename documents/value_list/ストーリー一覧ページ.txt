@@ -1,21 +1,22 @@
 # ページ編集ページからの送信(POST)内容　内部利用変数の例(jsonで記載するが、www-form-urlencordedで送信。{
-	[
-		"title":"タイトルは未定です。"
-		"picture":"http://example.com/picture.jpg",	#nullでもOK
-		"theme1":"織田信長",
-		"theme2":"現代テクノロジー",
-		"discription":"私の処女作です。"
-		"author":"佐々木"
-		"is_myne":true		#trueなら編集ページへのリンクも表示
-	],
-
-	[
-		"title":"タイトルは未定です。"
-		"picture":"http://example.com/picture.jpg",	#nullでもOK
-		"theme1":"織田信長",
-		"theme2":"現代テクノロジー",
-		"discription":"私の処女作です。"
-		"author":"佐々木"
-		"is_myne":true		#trueなら編集ページへのリンクも表示
-	],
+stories:{
+		[
+			"title":"タイトルは未定です。"
+			"picture":"http://example.com/picture.jpg",	#nullでもOK
+			"theme1":"織田信長",
+			"theme2":"現代テクノロジー",
+			"discription":"私の処女作です。"
+			"author":"佐々木"
+			"is_myne":true		#trueなら編集ページへのリンクも表示
+		],
+		[
+			"title":"タイトルは未定です。"
+			"picture":"http://example.com/picture.jpg",	#nullでもOK
+			"theme1":"織田信長",
+			"theme2":"現代テクノロジー",
+			"discription":"私の処女作です。"
+			"author":"佐々木"
+			"is_myne":true		#trueなら編集ページへのリンクも表示
+		],...			#可変個
+	}
 }
