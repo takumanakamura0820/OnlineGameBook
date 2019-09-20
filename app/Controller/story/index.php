@@ -29,7 +29,7 @@ $app->get('/story/', function (Request $request, Response $response) {
 			)["name"];
 		$story["is_mine"]=false;
 		if(isset($_SESSION["user_info"]["id"])){
-			($story["user_id"]==$_SESSION["user_info"]["id"]);
+			$story["is_mine"]=($story["user_id"]==$_SESSION["user_info"]["id"]);
 		}
 		unset($story["user_id"]);
 		// $data["stories"]=$story;
