@@ -21,11 +21,6 @@
             <input type="text" class="form-control" id="title" name="title" value="" required title="Please enter you username" placeholder="タイトル名">
         </div>
 
-        <!-- <div class="form-group">
-			<label for="genre" class="control-label">ジャンル</label>
-			<input type="text" class="form-control" id="genre" name="genre" value="" required title="Please enter you username">
-        </div> -->
-
         <div class="form-group">
             <label for="theme" class="control-label">テーマ</label>
             <div class="row">
@@ -52,6 +47,12 @@
         <div class="form-group">
             <label for="explanation" class="control-label">説明文</label>
             <textarea type="text" class="form-control" id="explanation" name="discription" value="" required title="Please enter your password"></textarea>
+        </div>
+
+        <div class="form-group">
+            <input type="text" name="picture" size="40" maxlength="20" placeholder="URLを入力してください">
+          <!-- アップロードボタン -->
+            <button class="btn btn-success">イメージをアップロード</button>
         </div>
 
         <button type="submit" formaction = "" formmethod="POST" class="btn btn-outline-success btn-block">ストーリー作成</button>
