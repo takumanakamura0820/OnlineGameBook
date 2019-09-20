@@ -11,15 +11,18 @@ $app->get('/story/new/', function (Request $request, Response $response) {
     //GETされた内容を取得します。
     // $data = $request->getQueryParams();
 
-    $data = [
-        "user" => [
-            "name" => $_SESSION['username'],
-        ],
-    ];
+    if (isset($_SESSION['user_info'])) {
+        $data = [
+            "user" => [
+                "name" => $_SESSION['user_info']['name'],
+            ],
+        ];
 
-    // Render index view
-    return $this->view->render($response, 'story/new.twig', $data);
-
+        // Render index view
+        return $this->view->render($response, 'story/new.twig', $data);
+    } else {
+        return $response->withRedirect('/login/');
+    };
 });
 
 // 新規タイトル作成コントローラ
