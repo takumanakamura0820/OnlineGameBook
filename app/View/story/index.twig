@@ -35,7 +35,7 @@
                     <tr>
                         <td class="align-middle" scope="col">
                             <a href="/story/{{ story.id }}/1/">
-                                <img src="{{ story.picture }}" width="200" class="img-fluid">
+                                <img src="{{ story.picture }}" width="200" class="img-fluid" alt="{{ story.title }}">
                             </a>
                         </td>
                         <td class="align-middle" scope="col">
@@ -57,4 +57,25 @@
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}
-{% block footer_scripts_add %}{% endblock %}
+{% block footer_scripts_add %}
+
+<style>
+/* PC & 全体 */
+
+/* スマホ */
+@media screen and (max-width:767px) {
+  .table-striped > thead > tr > th {
+    text-align: center;
+    width: 20%;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .table-striped > tbody > tr > td {
+    text-align: center;
+    width: 20%;
+  }
+}
+</style>
+
+{% endblock %}

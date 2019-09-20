@@ -7,6 +7,9 @@
 
         <div class="collapse navbar-collapse" id="Navber">
             <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/story/">ストーリー一覧</a>
+                </li>
                 {% if session.user_info  =="" %}
                     <li class="nav-item">
                         <a class="nav-link" href="/login/">ログイン</a>
@@ -19,16 +22,8 @@
                     {# ここに↓メニュー追加していく #}
                     {# 一覧ページを出すサンプルURLです #}
                     <li class="nav-item">
-                        <a class="nav-link" href="/story/">ストーリー一覧</a>
-                    </li>
-                    {# サンプルとして詳細ページの商品番号1番を出すURLです#}
-                    <li class="nav-item">
                         <a class="nav-link" href="/story/new/">ストーリー作成</a>
                     </li>
-                    {# Bootstrapサンプル#}
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="/sample">BT4サンプル</a>
-                    </li> -->
                     {# ここに↑メニュー追加していく #}
                     <li class="nav-item">
                         <a class="nav-link" href="/logout/">ログアウト</a>
@@ -46,10 +41,10 @@
 
                     {# 検索ウィンドウです #}
                     <li class="nav-item">
-                        <form class="form-inline" method="get">
+                        <!-- <form class="form-inline" method="get">
                             <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="キーワード" value="{{ keyword }}" aria-label="Search">
                             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">検索</button>
-                        </form>
+                        </form> -->
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">{{ session.user_info.name }}さん</a>

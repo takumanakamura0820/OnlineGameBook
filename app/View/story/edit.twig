@@ -93,17 +93,17 @@
 		</div>
 		<br>
 		<br>
-		<label>問題文</label>
+		<label>本文</label>
         <textarea class="form-control" name="content" rows="10" cols="100" required>{{input.content}}</textarea>
         <br>
         <br>
         <!-- 画像をアップロードする部分 -->
         <div class="form-group">
-          イメージのURLを入力してください<br />
-          <input type="text" name="picture" class="form-control" size="40" value="{{row.picture}}" maxlength="255"　placeholder="URLを入力してください">
+          <!-- イメージのURLを入力してください<br /> -->
+          <input type="text" name="picture" class="form-control" size="40" value="{{row.picture}}" maxlength="255" placeholder="イメージのURLを入力してください">
           <!-- アップロードボタン -->
           <div>OR</div>
-          <button class="btn btn-success">イメージをアップロード</button>
+          <button class="btn btn-success">ファイルを選択</button>
         </div>
 
           {% for row,value in selection_list %}
@@ -122,7 +122,7 @@
             <input type="text" name="selection1ahead" class="form-control" size="3" maxlength="10" required>
           </div><br />
           <div class="form-group">
-            <label for="selection">選択肢1</label>
+            <label for="selection">選択肢2</label>
             <input type="text" class="form-control" name="selection2" size="40" maxlength="400">　
             <label for="ahead">遷移先</label>
             <input type="text" name="selection2ahead" class="form-control" size="3" maxlength="10">
@@ -134,8 +134,7 @@
             <input type="text" name="selection3ahead" class="form-control" size="3" maxlength="10">
           </div>
           {% endfor %}
-
-          {% if 0 < selection|length and selection_list | length < 3 %}
+		  {% if 0 < selection|length and selection_list | length < 3 %}
           {% set num = (selection_list|length -3)|abs%}
               {% for i in num..3 %}
               <div class="form-group">
@@ -147,6 +146,7 @@
               {% endfor %}
           {%endif%}
 
+          ※遷移先に0を入力するとストーリーを終了させることができます。
         </div>
 
           {#選択肢の要素を可変させようとしているところ#}
