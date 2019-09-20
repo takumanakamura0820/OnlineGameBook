@@ -87,28 +87,33 @@
     <div class="col-md-12">
       <div class="well text-center">
         <!-- ストーリ記入するためのフォーム -->
-		<input type="text" class="h3" name="title" require placeholder="タイトルを入力" value="{{input.title}}">
+        <div class="form-group">
+        <label>タイトル</label>
+		<input type="text" class="form-control" class="h3" name  ="title" require placeholder="タイトルを入力" value="{{input.title}}">
+		</div>
 		<br>
 		<br>
-        <textarea name="content" rows="10" cols="100">{{input.content}}</textarea>
+		<label>問題文</label>
+        <textarea class="form-control" name="content" rows="10" cols="100">{{input.content}}</textarea>
         <br>
         <br>
         <!-- 画像をアップロードする部分 -->
-        <p class="text-center">
+        <div class="form-group">
           イメージのURLを入力してください<br />
-          <input type="text" name="picture" size="40" value="{{row.picture}}"maxlength="20"　placeholder="URLを入力してください">
+          <input type="text" name="picture" class="form-control" size="40" value="{{row.picture}}" maxlength="20"　placeholder="URLを入力してください">
           <!-- アップロードボタン -->
-            <button class="btn btn-success">イメージをアップロード</button>
-
+          <button class="btn btn-success">イメージをアップロード</button>
+        </div>
+        <div class="form-group">
           <br>
           {% for row,value in selection_list %}
-            選択肢{{row + 1}}<input type="text" name="selection1" size="100" maxlength="400" value="{{value.content}}">　遷移先<input type="text" name="selection1ahead" size="3" maxlength="10" value="{{value.ahead}}"><br/>
+            選択肢{{row + 1}}<input class="form-control" type="text" name="selection1" size="100" maxlength="400" value="{{value.content}}">　遷移先<input type="text" class="form-control" name="selection1ahead" size="3" maxlength="10" value="{{value.ahead}}"><br/>
           {% else %}
-            選択肢1<input type="text" name="selection1" size="100" maxlength="400">　遷移先<input type="text" name="selection1ahead" size="3" maxlength="10"><br/>
-            選択肢2<input type="text" name="selection2" size="100" maxlength="400">　遷移先<input type="text" name="selection2ahead" size="3" maxlength="10"><br/>
-            選択肢3<input type="text" name="selection3" size="100" maxlength="400">　遷移先<input type="text" name="selection3ahead" size="3" maxlength="10"><br/>
+            選択肢1<input type="text" class="form-control" name="selection1" size="100" maxlength="400">　遷移先<input type="text" name="selection1ahead" class="form-control" size="3" maxlength="10"><br/>
+            選択肢2<input type="text" class="form-control" name="selection2" size="100" maxlength="400">　遷移先<input type="text" name="selection2ahead" class="form-control" size="3" maxlength="10"><br/>
+            選択肢3<input type="text" class="form-control" name="selection3" size="100" maxlength="400">　遷移先<input type="text" name="selection3ahead" class="form-control" size="3" maxlength="10"><br/>
           {% endfor %}
-
+        </div>
 
           {#選択肢の要素を可変させようとしているところ#}
           <!-- <table border="1" width="600" height="10" bgcolor="#9999ff">
@@ -124,7 +129,6 @@
   <!-- 可変ボタン -->
   <!-- <button class="btn btn-info">+</button><button class="btn btn-info">-</button> -->
 <!-- 画面遷移するボタン達 -->
-</p/>
 <div style="display:inline-flex">
 
   <button class="btn btn-primary" formaction = "" formmethod="POST" >次の画面へ</button>
