@@ -50,7 +50,7 @@
           $(go.Panel, "Auto",
             $(go.Shape,  // the label background, which becomes transparent around the edges
               {
-                fill: $(go.Brush, "Radial", { 0: "rgb(240, 240, 240)", 0.3: "rgb(240, 240, 240)", 1: "rgba(240, 240, 240, 0)" }),
+                fill: $(go.Brush, "Radial"),
                 stroke: null
               }),
             $(go.TextBlock,  // the label text
@@ -80,9 +80,6 @@
 <div class="box">
   <div class="row">
     <div class="col-md-12">
-      <div id="sample">
-        <div id="myDiagramDiv" style="background-color: whitesmoke; border: solid 1px black; width: 100%; height: 700px"></div>
-      </div>
       <div class="well text-center">
         <!-- ストーリ記入するためのフォーム -->
         <div class="form-group">
