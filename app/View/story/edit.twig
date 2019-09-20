@@ -81,7 +81,7 @@
 </div>
 
 
-<form type = "submit">
+<form type = "submit" class="form-inline">
 <div class="box">
   <div class="row">
     <div class="col-md-12">
@@ -105,15 +105,48 @@
           <div>OR</div>
           <button class="btn btn-success">イメージをアップロード</button>
         </div>
-        <div class="form-group">
-          <br>
+
           {% for row,value in selection_list %}
-            選択肢{{row + 1}}<input class="form-control" type="text" name="selection1" size="100" maxlength="400" value="{{value.content}}">　遷移先<input type="text" class="form-control" name="selection1ahead" size="3" maxlength="10" value="{{value.ahead}}"><br/>
+          <div class="form-group">
+            <label for="selection">選択肢{{row + 1}}</label>
+            <input class="form-control" type="text" name="selection{{row + 1}}" size="40" maxlength="400" value="{{value.content}}">　
+            <label for="ahead">遷移先</label>
+            <input class="form-control" type="text" name="selection{{row + 1}}ahead" size="3" maxlength="10" value="{{value.ahead}}">
+            <br />
+          </div>
           {% else %}
-            選択肢1<input type="text" class="form-control" name="selection1" size="100" maxlength="400">　遷移先<input type="text" name="selection1ahead" class="form-control" size="3" maxlength="10" required><br/>
-            選択肢2<input type="text" class="form-control" name="selection2" size="100" maxlength="400">　遷移先<input type="text" name="selection2ahead" class="form-control" size="3" maxlength="10"><br/>
-            選択肢3<input type="text" class="form-control" name="selection3" size="100" maxlength="400">　遷移先<input type="text" name="selection3ahead" class="form-control" size="3" maxlength="10"><br/>
+          <div class="form-group">
+            <label for="selection">選択肢1</label>
+            <input type="text" class="form-control " name="selection1" size="40" maxlength="400">
+            <label for="ahead">遷移先</label>
+            <input type="text" name="selection1ahead" class="form-control" size="3" maxlength="10" required>
+          </div><br />
+          <div class="form-group">
+            <label for="selection">選択肢1</label>
+            <input type="text" class="form-control" name="selection2" size="40" maxlength="400">　
+            <label for="ahead">遷移先</label>
+            <input type="text" name="selection2ahead" class="form-control" size="3" maxlength="10">
+          </div>
+          <div class="form-group">
+            <label for="selection">選択肢3</label>
+            <input type="text" class="form-control" name="selection3" size="40" maxlength="400">
+            <label for="ahead">遷移先</label>
+            <input type="text" name="selection3ahead" class="form-control" size="3" maxlength="10">
+          </div>
           {% endfor %}
+
+          {% if 0 < selection|length and selection_list | length < 3 %}
+          {% set num = (selection_list|length -3)|abs%}
+              {% for i in num..3 %}
+              <div class="form-group">
+                          <label for="selection">選択肢1</label>
+                          <input type="text" class="form-control" name="selection{{i}}" size="40" maxlength="400">　
+                          <label for="ahead">遷移先</label>
+                          <input type="text" name="selection{{i}}ahead" class="form-control" size="3" maxlength="10">
+                        </div>
+              {% endfor %}
+          {%endif%}
+
         </div>
 
           {#選択肢の要素を可変させようとしているところ#}
