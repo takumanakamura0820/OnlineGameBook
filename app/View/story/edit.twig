@@ -49,19 +49,11 @@ window.onload = function () {
         $(go.Shape,  // the arrowhead
           { toArrow: "standard", stroke: null }),
           $(go.Panel, "Auto",
-<<<<<<< HEAD
           $(go.Shape,  // the label background, which becomes transparent around the edges
             {
               fill: $(go.Brush, "Radial", { 0: "rgb(240, 240, 240)", 0.3: "rgb(240, 240, 240)", 1: "rgba(240, 240, 240, 0)" }),
               stroke: null
             }),
-=======
-            $(go.Shape,  // the label background, which becomes transparent around the edges
-              {
-                fill: $(go.Brush, "Radial"),
-                stroke: null
-              }),
->>>>>>> ab6de05e7bfc728b80e57ae67d08de4e653d2e7b
             $(go.TextBlock,  // the label text
               {
                 textAlign: "center",
@@ -80,91 +72,6 @@ window.onload = function () {
         }
         </script>
 
-
-<<<<<<< HEAD
-        <!-- 編集フォーム -->
-        <div class="page-header text-center">
-          <h1>ストーリー作成</h1>
-        </div>
-
-        <div id="sample">
-          <div id="myDiagramDiv" style="background-color: whitesmoke; border: solid 1px black; width: 100%; height: 700px"></div>
-        </div>
-
-        <form type = "submit" class="form-inline">
-          <div class="box">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="well text-center">
-                  <!-- ストーリ記入するためのフォーム -->
-                  <div class="form-group">
-                    <label>タイトル</label>
-                    <input type="text" class="form-control" class="h3" name  ="title" required placeholder="タイトルを入力" value="{{input.title}}">
-                  </div>
-                  
-                  <label>本文</label>
-                  <textarea class="form-control" name="content" rows="10" cols="100" required>{{input.content}}</textarea>
-
-                  <!-- 画像をアップロードする部分 -->
-                  <div class="form-group">
-                    <!-- イメージのURLを入力してください<br /> -->
-                    <input type="text" name="picture" class="form-control" size="40" value="{{row.picture}}" maxlength="255" placeholder="イメージのURLを入力してください">
-                    <!-- アップロードボタン -->
-                    <div>OR</div>
-                    <button class="btn btn-success">ファイルを選択</button>
-                  </div>
-
-                  {% for row,value in selection_list %}
-                  <div class="form-group">
-                    <label for="selection">選択肢{{row + 1}}</label>
-                    <input class="form-control" type="text" name="selection{{row + 1}}" size="40" maxlength="400" value="{{value.content}}">　
-                    <label for="ahead">遷移先</label>
-                    <input class="form-control" type="text" name="selection{{row + 1}}ahead" size="3" maxlength="10" value="{{value.ahead}}">
-                    <br />
-                  </div>
-                  {% else %}
-                  <div class="form-group">
-                    <label for="selection">選択肢1</label>
-                    <input type="text" class="form-control " name="selection1" size="40" maxlength="400">
-                    <label for="ahead">遷移先</label>
-                    <input type="text" name="selection1ahead" class="form-control" size="3" maxlength="10" required>
-                  </div>
-<br>
-                  <div class="form-group">
-                    <label for="selection">選択肢2</label>
-                    <input type="text" class="form-control " name="selection2" size="40" maxlength="400">
-                    <label for="ahead">遷移先</label>
-                    <input type="text" name="selection2ahead" class="form-control" size="3" maxlength="10" required>
-                  </div>
-<br>
-                  <div class="form-group">
-                    <label for="selection">選択肢3</label>
-                    <input type="text" class="form-control " name="selection3" size="40" maxlength="400">
-                    <label for="ahead">遷移先</label>
-                    <input type="text" name="selection3ahead" class="form-control" size="3" maxlength="10" required>
-                  </div>
-                  {% endfor %}
-                  {% if 0 < selection|length and selection_list | length < 3 %}
-                  {% set num = (selection_list|length -3)|abs%}
-                  {% for i in num..3 %}
-
-                  {% endfor %}
-                  {%endif%}
-
-                  ※遷移先に0を入力するとストーリーを終了させることができます。
-                </div>
-
-                {#選択肢の要素を可変させようとしているところ#}
-                <!-- <table border="1" width="600" height="10" bgcolor="#9999ff">
-                <tr><td width="10" height="100">
-                選択肢１
-              </td><td width="100" height="100">
-              <div style="height:100px; width:100px; overflow:auto;">
-              <input type="text" name="namae" size="400" maxlength="200">
-            </div>
-          </td></tr>
-        </table> -->
-=======
 <form type = "submit">
 <div class="box">
   <div class="row">
@@ -179,17 +86,6 @@ window.onload = function () {
 		<br>
 		<label>本文</label>
         <textarea class="form-control" name="content" rows="10" cols="100" required>{{input.content}}</textarea>
->>>>>>> ab6de05e7bfc728b80e57ae67d08de4e653d2e7b
-        <br>
-        <!-- 可変ボタン -->
-        <!-- <button class="btn btn-info">+</button><button class="btn btn-info">-</button> -->
-        <!-- 画面遷移するボタン達 -->
-        <div style="display:inline-flex">
-
-<<<<<<< HEAD
-          <button class="btn btn-primary" formaction = "" formmethod="POST" >次の画面へ</button>
-          <button class="btn btn-danger" formaction = "" formmethod="POST" name="exit">終了する</button>
-=======
           {% for row,value in selection_list %}
           <div class="form-group">
             <label for="selection">選択肢{{row + 1}}</label>
@@ -232,16 +128,10 @@ window.onload = function () {
 
           ※遷移先に0を入力するとストーリーを終了させることができます。
         </div>
->>>>>>> ab6de05e7bfc728b80e57ae67d08de4e653d2e7b
-
-        </p>
-      </div>
-<<<<<<< HEAD
     </div>
   </div>
-=======
     </td></tr>
-  </table> -->
+  </table>
   <br>
   <!-- 可変ボタン -->
   <!-- <button class="btn btn-info">+</button><button class="btn btn-info">-</button> -->
@@ -249,16 +139,11 @@ window.onload = function () {
 <div style="display:inline-flex">
   <button class="btn btn-primary" formaction = "" formmethod="POST" >次の画面へ</button>
   <button class="btn btn-danger" formaction = "" formmethod="POST" name="exit">終了する</button>
-</p>
-</div>
-</div>
 </div>
 <div id="sample">
     <div id="myDiagramDiv" style="background-color: whitesmoke; border: solid 1px black; width: 100%; height: 700px"></div>
 </div>
 
-
->>>>>>> ab6de05e7bfc728b80e57ae67d08de4e653d2e7b
 </div>
 </form>
 
