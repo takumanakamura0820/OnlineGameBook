@@ -9,18 +9,40 @@ use Model\Dao\Selection;
 // 編集ページ(Get Request)
 $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response, array $args) {
 
-
-
-
-    //GETされた内容を取得します。
-    $data = $request->getQueryParams();
-
     $data = [
         "user" => [
-            "name" => $_SESSION['username'],
+            "name" => $_SESSION['user_info']['name'],
         ],
         "page_id" => $args["page_id"],
     ];
+
+    //GETされた内容を取得します。
+
+    $selection = new Selection($this->db);
+    $selection_result = $selection->getSelectionByStoryId($args["story_id"]);
+
+    $selection_list = $selection->getSelectionByStoryIdAndPageId($args["story_id"],$args["page_id"]);
+
+    $data['selection_list'] = $selection_list;
+
+    $selection_data = [];
+    foreach($selection_result as $value){
+        $row = ["from" => $value['page_id'], "to" => $value['ahead'], "text" => $value['content']];
+        array_push($selection_data, $row);
+    }
+
+    $page = new Page($this->db);
+    $page_data = $page->getPageByStoryId($args["story_id"]);
+    $master = [];
+    foreach ($page_data as $value) {
+        $row = [ "key" => $value['page_id'] , "text" => $value['page_id'].":".$value['title']];
+        array_push($master,$row);
+    }
+
+    $data['selection'] = json_encode($selection_data);
+    $data['master'] = json_encode($master);
+
+    $data['input'] = $page->getPageByStoryAndPage($args["story_id"],$args["page_id"]);
 
     // Render index view
     return $this->view->render($response, 'story/edit.twig', $data);
