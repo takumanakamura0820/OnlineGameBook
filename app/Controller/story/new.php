@@ -44,7 +44,6 @@ $app->post('/story/new/', function (Request $request, Response $response) {
 
         // 新規ストーリー作成
         $id = $story->insert($param);
-
         return $response->withRedirect('/story/' . $id . '/1/edit');
 
     } else {
