@@ -33,7 +33,6 @@ $app->get('/story/', function (Request $request, Response $response) {
 	}
     // Render index view
     //
-    dd($data);
     return $this->view->render($response, 'story/index.twig', $data);
 });
 
