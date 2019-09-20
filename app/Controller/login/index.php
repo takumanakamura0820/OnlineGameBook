@@ -37,8 +37,8 @@ $app->post('/login/', function (Request $request, Response $response) {
         $this->session->set('user_info', $result);
 
         //TOPへリダイレクト
-        return $response->withRedirect('/');  // 修正
-        // return $response->withRedirect('/top');
+        // return $response->withRedirect('/');  // 修正
+        return $response->withRedirect('/story/');
 
     } else {
         //入力項目がマッチしない場合エラーを出す
