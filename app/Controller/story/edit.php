@@ -88,7 +88,7 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
     $count = 1;
     while(true) {
         $key = "selection" . strval($count);
-        if (isset($data[$key])) {
+        if (!empty($data[$key])) {
             $param = [
                 "story_id" => $args["story_id"],
                 "page_id" => $args["page_id"],
