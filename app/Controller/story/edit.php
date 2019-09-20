@@ -64,6 +64,7 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
     $param = [
         "story_id" => $args["story_id"],
         "page_id" => $args["page_id"],
+        "title" => $data["title"],
         "picture" => $data["picture"],
         "content" => $data["content"]
     ];
