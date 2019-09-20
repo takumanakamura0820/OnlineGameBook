@@ -111,7 +111,7 @@
             <label for="selection">選択肢{{row + 1}}</label>
             <input class="form-control" type="text" name="selection{{row + 1}}" size="40" maxlength="400" value="{{value.content}}">　
             <label for="ahead">遷移先</label>
-            <input class="form-control" type="text" name="selection{{row + 1}}ahead" size="3" maxlength="10" value="{{value.ahead}}">
+            <input class="form-control" type="text" name="selection{{row + 1}}ahead" size="3" maxlength="10" value="{{ 0 < value.ahead ? value.ahead  :  0 }}">
             <br />
           </div>
           {% else %}
@@ -138,7 +138,7 @@
           {% set num = (selection_list|length -3)|abs%}
               {% for i in num..3 %}
               <div class="form-group">
-                          <label for="selection">選択肢1</label>
+                          <label for="selection">選択肢{{i}}</label>
                           <input type="text" class="form-control" name="selection{{i}}" size="40" maxlength="400">　
                           <label for="ahead">遷移先</label>
                           <input type="text" name="selection{{i}}ahead" class="form-control" size="3" maxlength="10">
@@ -164,10 +164,8 @@
   <!-- <button class="btn btn-info">+</button><button class="btn btn-info">-</button> -->
 <!-- 画面遷移するボタン達 -->
 <div style="display:inline-flex">
-
   <button class="btn btn-primary" formaction = "" formmethod="POST" >次の画面へ</button>
   <button class="btn btn-danger" formaction = "" formmethod="POST" name="exit">終了する</button>
-
 </p>
 </div>
 </div>
