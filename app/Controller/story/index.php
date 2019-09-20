@@ -19,7 +19,7 @@ $app->get('/story/', function (Request $request, Response $response) {
 	//ストーリー情報全権取得
 	$stories=$story->select(array(),"","",null,true);
 
-	$data=array();
+	$data["stories"]=array();
 	foreach ($stories as $story){
 		unset($story["created_at"]);
 		unset($story["updated_at"]);
@@ -28,7 +28,7 @@ $app->get('/story/', function (Request $request, Response $response) {
 			array("id"=>$story["user_id"]),"","",1,false
 			)["name"];
 		unset($story["user_id"]);
-		$data[]=$story;
+		$data["stories"]=$story;
 	}
     // Render index view
     return $this->view->render($response, 'story/index.twig', $data);
