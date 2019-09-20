@@ -87,13 +87,16 @@
     <div class="col-md-12">
       <div class="well text-center">
         <!-- ストーリ記入するためのフォーム -->
+		<input type="text" class="h3" name="title" require placeholder="タイトルを入力">
+		<br>
+		<br>
         <textarea name="content" rows="10" cols="100">{{input.content}}</textarea>
         <br>
         <br>
         <!-- 画像をアップロードする部分 -->
         <p class="text-center">
           イメージのURLを入力してください<br />
-          <input type="text" name="picture" size="40" value="{{row.picture}}"maxlength="20">
+          <input type="text" name="picture" size="40" value="{{row.picture}}"maxlength="20"　placeholder="URLを入力してください">
           <!-- アップロードボタン -->
             <button class="btn btn-success">イメージをアップロード</button>
 
@@ -125,7 +128,7 @@
 <div style="display:inline-flex">
 
   <button class="btn btn-primary" formaction = "" formmethod="POST" >次の画面へ</button>
-  <button class="btn btn-danger" formaction = "" formmethod="POST" >終了する</button>
+  <button class="btn btn-danger" formaction = "" formmethod="POST" name="exit">終了する</button>
 
 </p>
 </div>

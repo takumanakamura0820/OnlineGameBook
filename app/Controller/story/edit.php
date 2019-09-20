@@ -49,8 +49,21 @@ $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Respon
 
 });
 
+// 新規ページ作成
+$app->get('/story/{story_id}/new', function (Request $request, Response $response, array $args) {
+
+	//現在のDBの状況を取得
+    $story = new Story($this->db);
+	$currentStory=$story->select(
+		array("id"=>$args["story_id"]),"","",1,false
+	);
+    return $response->withRedirect('/story/' . $args["story_id"] . '/' . $currentStory["next_id"] . '/edit');
+});
+
+
 // 編集ページ(Post Request)
 $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response, array $args) {
+
 
     //POSTされた内容を取得します
     $data = $request->getParsedBody();
@@ -73,6 +86,7 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
     $param = [
         "story_id" => $args["story_id"],
         "page_id" => $args["page_id"],
+        "title" => $data["title"],
         "picture" => $data["picture"],
         "content" => $data["content"]
     ];
@@ -97,12 +111,19 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
     $count = 1;
     while(true) {
         $key = "selection" . strval($count);
-        if (isset($data[$key])) {
+        if (!empty($data[$key])) {
+
+            $ahead = intval($data[$key . "ahead"]);
+
+            if ($ahead === 0) {
+                $ahead = -1;
+            }
+
             $param = [
                 "story_id" => $args["story_id"],
                 "page_id" => $args["page_id"],
                 "content" => $data[$key],
-                "ahead" => intval($data[$key . "ahead"])
+                "ahead" => $ahead
             ];
 
             $selection->insert($param);
@@ -121,6 +142,11 @@ $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Respo
 				)
 			);
 		}
-	}
-    return $response->withRedirect('/story/' . $args["story_id"] . '/' . ($args["page_id"]+1) . '/edit');
+	};
+
+    if (isset($data["exit"])) {
+        return $response->withRedirect('/');
+    } else {
+        return $response->withRedirect('/story/' . $args["story_id"] . '/' . ($args["page_id"]+1) . '/edit');
+    };
 });
