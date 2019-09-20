@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="page-header text-center">
-                <h1 style="color:white;text-shadow:-1px -1px 0 black,1px -1px 0 black,-1px 1px 0 black,1px 1px 0 black;font-size:100px;background: rgba(255, 255, 255, .5);">謎解きゲームメーカー</h1>
+                <h1 style="color:white;text-shadow:-1px -1px 0 black,1px -1px 0 black,-1px 1px 0 black,1px 1px 0 black;background: rgba(255, 255, 255, .5);">謎解きゲームメーカー</h1>
             </div>
             <div class="box">
                 <div class="row">
@@ -31,4 +31,18 @@
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}
-{% block footer_scripts_add %}{% endblock %}
+{% block footer_scripts_add %}
+<style>
+/* PC & 全体 */
+h1 {
+  font-size:100px;
+}
+
+/* スマホ */
+@media screen and (max-width:767px) {
+  h1 {
+    font-size:30px;
+  }
+}
+</style>
+{% endblock %}

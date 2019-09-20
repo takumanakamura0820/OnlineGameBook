@@ -25,6 +25,17 @@ $app->post('/register/', function (Request $request, Response $response) {
     //ユーザーDAOをインスタンス化
     $user = new User($this->db);
 
+	//全項目入力されているか
+   if (!isset($data["password"]) or !isset($data["password_re"]) or !isset($data["name"]) or !isset($data["email"])) {
+
+        //入力項目がマッチしない場合エラーを出す
+        $data["error"] = "すべての項目を入力してください。";
+
+        // 入力フォームを再度表示します
+        return $this->view->render($response, 'register/register.twig', $data);
+
+    }
+
     //入力されたメールアドレスの会員が登録済みかどうかをチェックします
     if ($user->select(array("email" => $data["email"]), "", "", 1, false)) {
 
@@ -36,8 +47,31 @@ $app->post('/register/', function (Request $request, Response $response) {
 
     }
 
+    //利用規約の同意確認
+   if (!isset($data["agree"])) {
+
+        //入力項目がマッチしない場合エラーを出す
+        $data["error"] = "利用規約をお読みになり、同意される場合はチェックを入れてください。";
+
+        // 入力フォームを再度表示します
+        return $this->view->render($response, 'register/register.twig', $data);
+
+    }
+
+	//パスワードと再確認の一致
+   if ($data["password"]!=$data["password_re"]) {
+
+        //入力項目がマッチしない場合エラーを出す
+        $data["error"] = "パスワードとパスワード再入力の内容が一致しません。";
+
+        // 入力フォームを再度表示します
+        return $this->view->render($response, 'register/register.twig', $data);
+    }
+
     //DB登録に必要ない情報は削除します
     unset($data["password_re"]);
+    unset($data["agree"]);
+
 
     //DBに登録をする。戻り値は自動発番されたIDが返ってきます
     $id = $user->insert($data);
