@@ -11,6 +11,11 @@ $app->get('/story/{story_id}/{page_id}/', function (Request $request, Response $
     //GETされた内容を取得します。今のところ使う予定なし。
     $data = $request->getQueryParams();
 
+    // page_id = 0 -> Topページへ
+    if ( $args["page_id"] === "-1" ) {
+        return $response->withRedirect('/');
+    }
+
 
 	$user=new Model\Dao\User($this->db);
 	$story=new Model\Dao\Story($this->db);

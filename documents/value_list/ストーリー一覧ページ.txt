@@ -1,0 +1,8 @@
+# ページ編集ページからの送信(POST)内容　内部利用変数の例(jsonで記載するが、www-form-urlencordedで送信。{
+
+	"title":"大冒険"
+	"picture":"http://example.com/picture.jpg",	#nullでもOK
+	"discription":
+	"author":"佐々木"
+	"is_myne":true		#trueなら編集リンクを表示する
+}
