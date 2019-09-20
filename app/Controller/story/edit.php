@@ -6,7 +6,6 @@ use Model\Dao\Page;
 use Model\Dao\Story;
 use Model\Dao\Selection;
 
-
 // 編集ページ(Get Request)
 $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response, array $args) {
 
@@ -27,6 +26,18 @@ $app->get('/story/{story_id}/{page_id}/edit', function (Request $request, Respon
     return $this->view->render($response, 'story/edit.twig', $data);
 
 });
+
+// 新規ページ作成
+$app->get('/story/{story_id}/new', function (Request $request, Response $response, array $args) {
+
+	//現在のDBの状況を取得
+    $story = new Story($this->db);
+	$currentStory=$story->select(
+		array("id"=>$args["story_id"]),"","",1,false
+	);
+    return $response->withRedirect('/story/' . $args["story_id"] . '/' . $currentStory["next_id"] . '/edit');
+});
+
 
 // 編集ページ(Post Request)
 $app->post('/story/{story_id}/{page_id}/edit', function (Request $request, Response $response, array $args) {

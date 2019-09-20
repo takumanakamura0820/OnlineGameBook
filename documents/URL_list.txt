@@ -10,6 +10,7 @@
 ## 新規作成	(優先順位順に記載)
 	/story/(story_id)/(page_id)/	ストーリー閲覧ページ
 	/story/(story_id)/(page_id)/edit	ページ編集
+	/story/(story_id)/(page_id)/new	新規ページ作成
 	/story/new	新規ストーリー作成ページ
 	/story/	ストーリー一覧ページ
 
