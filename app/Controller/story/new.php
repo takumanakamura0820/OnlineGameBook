@@ -9,7 +9,6 @@ use Model\Dao\Story;
 $app->get('/story/new/', function (Request $request, Response $response) {
 
     //GETされた内容を取得します。
-    // $data = $request->getQueryParams();
 
     if (isset($_SESSION['user_info'])) {
         $data = [
