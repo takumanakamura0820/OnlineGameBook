@@ -28,9 +28,12 @@ $app->get('/story/', function (Request $request, Response $response) {
 			array("id"=>$story["user_id"]),"","",1,false
 			)["name"];
 		unset($story["user_id"]);
-		$data["stories"]=$story;
+		// $data["stories"]=$story;
+		array_push($data["stories"], $story);
 	}
     // Render index view
+    //
+    dd($data);
     return $this->view->render($response, 'story/index.twig', $data);
 });
 
