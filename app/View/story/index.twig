@@ -23,6 +23,7 @@
                     <th scope="col">タイトル</th>
                     <th scope="col">テーマ</th>
                     <th scope="col">概要</th>
+                    <th scope="col">作成者用リンク</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,11 @@
                         </td>
                         <td class="align-middle" scope="col">{{ story.theme1 }} × {{ story.theme2 }}</td>
                         <td class="align-middle" scope="col">{{ story.discription }}</td>
+                        <td class="align-middle" scope="col">
+                            {% if story.is_mine %}
+                                <a href="/story/{{ story.id }}/1/edit">編集</a>
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
