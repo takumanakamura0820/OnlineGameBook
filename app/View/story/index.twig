@@ -33,12 +33,12 @@
                 {% for story in stories %}
                     <tr>
                         <td class="align-middle" scope="col">
-                            <a href="/story/{{ story.id }}/1">
+                            <a href="/story/{{ story.id }}/1/">
                                 <img src="{{ story.picture }}" width="200" class="img-fluid">
                             </a>
                         </td>
                         <td class="align-middle" scope="col">
-                            <a href="/story/{{ story.id }}/1">{{ story.title }}</a>
+                            <a href="/story/{{ story.id }}/1/">{{ story.title }}</a>
                         </td>
                         <td class="align-middle" scope="col">{{ story.theme1 }} × {{ story.theme2 }}</td>
                         <td class="align-middle" scope="col">{{ story.discription }}</td>
